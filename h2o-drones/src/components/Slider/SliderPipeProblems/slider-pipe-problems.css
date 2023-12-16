@@ -1,0 +1,56 @@
+.problem-slider.container {
+  margin-inline: 0;
+}
+
+.problem-slider {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  height: 81px;
+  max-width: 1440px;
+  margin-inline: auto;
+  margin-block: 50px;
+}
+
+.pipe-background {
+  position: absolute;
+  display: flex;
+  height: 100%;
+}
+
+.pipe-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.pipe-img-1  {
+  width: calc(100% - 1040px);
+}
+
+.pipe-img-2 {
+  margin-inline: -2px;
+}
+
+.pipe-img-3  {
+  width: calc(100% - 1040px);
+}
+
+.MuiSlider-mark {
+  height: 8px;
+  color: black;
+}
+
+.MuiSlider-mark .MuiSlider-markActive::before {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: black;
+  top: 0;
+}
+
+.slider-mark {
+  height: 100px;
+  width: 2px;
+  background-color: #27AAE1;
+}
