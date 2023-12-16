@@ -1,0 +1,32 @@
+.slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: 80%;
+  margin-inline: auto;
+}
+
+.slider-top__labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.position-indicators {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #27AAE1;
+}
+
+.slider-title {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #002A42;
+}
