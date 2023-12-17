@@ -5,6 +5,8 @@ import SliderPipeLength from "./components/Slider/SliderPipeLenght/SliderPipeLen
 import {useEffect, useRef, useState} from "react";
 import VideoPlayer from "./components/VideoPlayer";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
+import CaseTable from "./components/Table/CaseTable";
+import Footer from "./components/Footer/Footer";
 
 const videoUrls = {
   leftVideo: 'videos/video-one.mp4',
@@ -218,6 +220,12 @@ function App() {
           <ImageGallery />
           </div>
         </section>
+        <section className="container">
+          <CaseTable />
+        </section>
+        <div className="container">
+          <Footer />
+        </div>
       </div>
 );
 }
