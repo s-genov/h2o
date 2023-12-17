@@ -1,0 +1,11 @@
+.image-gallery {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.image-gallery image {
+  width: 100%;
+  height: 100%;
+}

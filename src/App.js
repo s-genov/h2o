@@ -4,6 +4,7 @@ import SliderPipeProblems from './components/Slider/SliderPipeProblems/SliderPip
 import SliderPipeLength from "./components/Slider/SliderPipeLenght/SliderPipeLength";
 import {useEffect, useRef, useState} from "react";
 import VideoPlayer from "./components/VideoPlayer";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
 
 const videoUrls = {
   leftVideo: 'videos/video-one.mp4',
@@ -192,7 +193,7 @@ function App() {
           </div>
         </section>
         <section>
-          <div className="container">
+          <div className="container video-container">
             <div className="video-row">
               <div className="video-block">
                 <VideoPlayer
@@ -210,6 +211,11 @@ function App() {
                     url={videoUrls.leftVideo}/>
               </div>
             </div>
+          </div>
+        </section>
+        <section>
+          <div className="container">
+          <ImageGallery />
           </div>
         </section>
       </div>
