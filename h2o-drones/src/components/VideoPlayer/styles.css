@@ -1,0 +1,10 @@
+
+
+.video-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #002A42;
+    padding: 2rem;
+}
