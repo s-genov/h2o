@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
+
+.copyright span {
+  color: #27AAE1;
+  font-weight: bold;
+}
+
+.footer span + span {
+  color: black;
+}
+
+.ui-development {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
