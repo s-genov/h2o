@@ -34,3 +34,14 @@
 .slider-top {
   padding-block: 50px;
 }
+
+.video-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.video-block {
+  flex: 1;
+}

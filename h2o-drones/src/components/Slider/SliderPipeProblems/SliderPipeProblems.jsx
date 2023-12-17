@@ -4,59 +4,54 @@ import Slider from "@mui/material/Slider";
 import pipeStart from "../../../images/pipe-start.png";
 import pipeMiddle from "../../../images/pipe-middle.png";
 import pipeEnd from "../../../images/pipe-end.png";
+import {useEffect, useState} from "react";
 
-const SliderPipeProblems = () => {
-  const marks = [
-    {
-      value: 15,
-    },
-    {
-      value: 25,
-    },
-    {
-      value: 55,
-    },
-    {
-      value: 75,
-    },
-  ];
+const SliderPipeProblems = (props) => {
+
+
+   const [marks, setMarks] = useState([])
+   const [videoLength, setVideoLength] = useState(0)
+   const [defaultValue, setDefaultValue] = useState(0)
+
+    useEffect(() => {
+        setDefaultValue(defaultValue)
+    }, [props.defaultValue]);
+
+    useEffect(() => {
+        setVideoLength(props.videoDuration)
+    }, [props.videoDuration]);
+
+
+    useEffect(() => {
+        setMarks(props.currentTimeMarks)
+    }, [props.currentTimeMarks]);
+
+
+  const handleChange = (value) => {
+      props.pipeProblemsSliderChangeHandler(value)
+  }
 
   return (
     <div className="problem-slider">
-      <div class="pipe-background">
-        <div class="pipe-img pipe-img-1">
+      <div className="pipe-background">
+        <div className="pipe-img pipe-img-1">
           <img src={pipeStart} alt=""></img>
         </div>
-        <div class="pipe-img pipe-img-2">
+        <div className="pipe-img pipe-img-2">
           <img src={pipeMiddle} alt=""></img>
         </div>
-        <div class="pipe-img pipe-img-3">
+        <div className="pipe-img pipe-img-3">
           <img src={pipeEnd} alt=""></img>
         </div>
       </div>
-      {marks.map((mark) => {
-        return (
-          <div
-            class="mark-triangle"
-            style={{
-              position: "absolute",
-              height: 0,
-              width: 0,
-              top: "-10px",
-              left: `calc(${mark.value}% - 14px)`,
-              borderLeft: '15px solid transparent',
-              borderRight: '15px solid transparent',
-              borderTop: '15px solid #27AAE1',
-              zIndex: 2,
-            }}
-          >
-          </div>
-        );
-      })}
       <Box sx={{ width: "100%" }}>
         <Slider
           size="medium"
-          defaultValue={50}
+          min={0}
+          max={videoLength}
+          value={props.value}
+          defaultValue={0}
+          step={0.01}
           aria-label="Default"
           valueLabelDisplay="auto"
           marks={marks}
@@ -80,6 +75,9 @@ const SliderPipeProblems = () => {
           }}
           slots={{
             mark: "div",
+          }}
+          onChange={ (event, value) => {
+              handleChange(value)
           }}
         />
       </Box>

@@ -49,8 +49,21 @@
   top: 0;
 }
 
+.MuiSlider-markLabel {
+  top: -5rem !important;
+}
+
+
+.MuiSlider-markLabel::before {
+  content: url('./../../../images/marker.png');
+}
+
+
 .slider-mark {
   height: 100px;
   width: 2px;
   background-color: #27AAE1;
+}
+.MuiSlider-root {
+  margin-bottom: 0 !important;
 }
