@@ -7,124 +7,63 @@ import VideoPlayer from "./components/VideoPlayer";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import CaseTable from "./components/Table/CaseTable";
 import Footer from "./components/Footer/Footer";
+import SonarPipe from "./components/SonarPipe/SonarPipe";
 
 const videoUrls = {
-  leftVideo: 'videos/video-one.mp4',
-  rightVideo: 'videos/video-two.mov'
+  leftVideo: 'videos/2023-10-05_13-53-19_H2O_trimmed.mp4',
+  rightVideo: 'videos/20231005_135339 vanaf BCD 50mtr richting BCE onderzijde_exported_trimmed.mp4'
 }
 
 const pipeSegments = [
   {
     marks: [
       {
-        value: 3.00,
+        value: 0.03,
         label: '',
       },
       {
-        value: 4.25,
-        label: '',
-      },
-      {
-        value: 5.37,
-        label: '',
-      },
-      {
-        value: 7.01,
+        value: 0.15,
         label: '',
       },
     ]
   },
-  {
-    marks: [
-      {
-        value: 2.54,
-        label: '',
-      },
-      {
-        value: 6.58,
-        label: '',
-      },
-    ]
-  },
-  {
-    marks: [
-      {
-        value: 4.57,
-        label: '',
-      },
-      {
-        value: 1.11,
-        label: '',
-      },
-    ]
-  },
-  {
-    marks: [
-      {
-        value: 2.54,
-        label: '',
-      },
-      {
-        value: 3.33,
-        label: '',
-      },
-      {
-        value: 7.01,
-        label: '',
-      },
-    ]
-  },
-  {
-    marks: [
-      {
-        value: 2.45,
-        label: '',
-      },
-      {
-        value: 4.44,
-        label: '',
-      },
-      {
-        value: 5.51,
-        label: '',
-      },
-    ]
-  }
 ]
 
-const convertToLengthInSeconds = (timeMark) => {
+// Temporarily not in use
 
-  let minutes = 0
-  let seconds = 0
-  let convertedTimeMark = timeMark.toString()
+// const convertToLengthInSeconds = (timeMark) => {
 
-  // if it's a floating point number
-  if(convertedTimeMark.includes('.')){
-    let parts = convertedTimeMark.split('.')
-     minutes = parseInt(parts[0])
-     seconds = parseInt(parts[1])
-  } else {
-    minutes = parseInt(timeMark)
-  }
+//   let minutes = 0
+//   let seconds = 0
+//   let convertedTimeMark = timeMark.toString()
 
-  if(seconds > 60){
-    seconds = 59
-  }
+//   // if it's a floating point number
+//   if(convertedTimeMark.includes('.')){
+//     let parts = convertedTimeMark.split('.')
+//      minutes = parseInt(parts[0])
+//      seconds = parseInt(parts[1])
+//   } else {
+//     minutes = parseInt(timeMark)
+//   }
 
-  if(minutes === 0){
-    return seconds;
-  }
+//   if(seconds > 60){
+//     seconds = 59
+//   }
 
-  return (minutes * 60) + seconds
-}
+//   if(minutes === 0){
+//     return seconds;
+//   }
 
-const convertToLengthInMinutes = (secondsAmount) => {
-  let mind = secondsAmount % (60 * 60);
-  let minutes = Math.floor(mind / 60);
-  let secd = mind % 60;
-  let seconds = Math.ceil(secd);
-  return parseFloat(`${minutes}.${seconds}`);
-}
+//   return (minutes * 60) + seconds
+// }
+
+// const convertToLengthInMinutes = (secondsAmount) => {
+//   let mind = secondsAmount % (60 * 60);
+//   let minutes = Math.floor(mind / 60);
+//   let secd = mind % 60;
+//   let seconds = Math.ceil(secd);
+//   return parseFloat(`${minutes}.${seconds}`);
+// }
 
 function App() {
 
@@ -134,7 +73,7 @@ function App() {
   const [playerAutoPlay, setPlayerAutoPlay] = useState(false)
   const [currentTimeMarks, setCurrentTimeMarks] = useState([])
   const [problemsSliderValue, setProblemsSliderValue] = useState(0)
-  const [videoDuration, setVideoDuration] = useState( 7.50)
+  const [videoDuration, setVideoDuration] = useState(0.20)
 
   useEffect(() => {
     changeSegmentTo(0)
@@ -158,9 +97,10 @@ function App() {
 
   const pipeProblemsSliderChangeHandler = (sliderValue) => {
     setProblemsSliderValue(sliderValue)
-    setPlayerTime(convertToLengthInSeconds(sliderValue))
+    setPlayerTime(sliderValue * 100)
+
     if(currentTimeMarks.includes(sliderValue)){
-       alert('Issue found. Videos start playing.')
+      //  alert('Issue found. Videos start playing.')
         setPlayerAutoPlay(true)
     } else {
         setPlayerAutoPlay(false)
@@ -168,8 +108,9 @@ function App() {
   }
 
   const playerSeekHandler = (seekValueInSeconds) => {
-      setProblemsSliderValue(convertToLengthInMinutes(seekValueInSeconds))
+      const newSliderValue = seekValueInSeconds / 100
       setPlayerTime(seekValueInSeconds)
+      setProblemsSliderValue(Number(newSliderValue.toFixed(2)))
   }
 
   return (
@@ -195,11 +136,17 @@ function App() {
           </div>
         </section>
         <section>
+          <div className="container">
+            <SonarPipe />
+          </div>
+        </section>
+        <section>
           <div className="container video-container">
             <div className="video-row">
               <div className="video-block">
                 <VideoPlayer
                     playerTime={playerTime}
+                    setPlayerAutoPlay={setPlayerAutoPlay}
                     playerSeekHandler={playerSeekHandler}
                     autoPlay={playerAutoPlay}
                     url={videoUrls.leftVideo}
@@ -208,9 +155,10 @@ function App() {
               <div className="video-block">
                 <VideoPlayer
                     playerTime={playerTime}
+                    setPlayerAutoPlay={setPlayerAutoPlay}
                     playerSeekHandler={playerSeekHandler}
                     autoPlay={playerAutoPlay}
-                    url={videoUrls.leftVideo}/>
+                    url={videoUrls.rightVideo}/>
               </div>
             </div>
           </div>
