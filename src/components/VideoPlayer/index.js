@@ -1,6 +1,6 @@
 import './styles.css'
 import ReactPlayer from 'react-player'
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef } from "react";
 
 const VideoPlayer = (props) => {
 
@@ -8,7 +8,7 @@ const VideoPlayer = (props) => {
 
     useEffect(() => {
         if(props.playerTime !== null){
-           playerRef.current.seekTo(props.playerTime)
+           playerRef.current.seekTo(props.playerTime, 'seconds');
         }
     }, [props.playerTime]);
 
@@ -19,9 +19,15 @@ const VideoPlayer = (props) => {
                 ref={playerRef}
                 playing={props.autoPlay}
                 onSeek={(p) => {
-                    props.playerSeekHandler(p)
+                    props.playerSeekHandler(p);
                 }}
-                url={props.url} />
+                onPlay={(p) => {
+                    props.setPlayerAutoPlay(true)
+                }}
+                onPause={(p) => props.setPlayerAutoPlay(false)}
+                url={props.url} 
+                width={"auto"}
+                />
         </div>
     )
 }
