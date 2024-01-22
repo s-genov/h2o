@@ -26,8 +26,7 @@ const VideoPlayer = (props) => {
                     props.setPlayerAutoPlay(true)
                 }}
                 onPause={(p) => props.setPlayerAutoPlay(false)}
-                url={props.url}
-                type={props.type}
+                url={[{ src: props.url, type: props.type }]}
                 width={"100%"}
                 />
         </div>
