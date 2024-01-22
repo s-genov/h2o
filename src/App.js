@@ -10,8 +10,14 @@ import Footer from "./components/Footer/Footer";
 import SonarPipe from "./components/SonarPipe/SonarPipe";
 
 const videoUrls = {
-  leftVideo: 'videos/2023-10-05_13-53-19_H2O_trimmed.mp4',
-  rightVideo: 'videos/20231005_135339 vanaf BCD 50mtr richting BCE onderzijde_exported_trimmed.mp4'
+  leftVideo: {
+    src: 'videos/2023-10-05_13-53-19_H2O_trimmed.mp4',
+    type: 'video/mp4',
+  },
+  rightVideo: {
+    src: 'videos/20231005_135339 vanaf BCD 50mtr richting BCE onderzijde_exported_trimmed.mp4',
+    type: 'video/mp4', 
+  }
 }
 
 const pipeSegments = [
@@ -149,7 +155,8 @@ function App() {
                     setPlayerAutoPlay={setPlayerAutoPlay}
                     playerSeekHandler={playerSeekHandler}
                     autoPlay={playerAutoPlay}
-                    url={videoUrls.leftVideo}
+                    url={videoUrls.leftVideo.src}
+                    type={videoUrls.leftVideo.type}
                     />
               </div>
               <div className="video-block">
@@ -158,7 +165,8 @@ function App() {
                     setPlayerAutoPlay={setPlayerAutoPlay}
                     playerSeekHandler={playerSeekHandler}
                     autoPlay={playerAutoPlay}
-                    url={videoUrls.rightVideo}/>
+                    url={videoUrls.rightVideo.src}
+                    type={videoUrls.rightVideo.type}/>
               </div>
             </div>
           </div>
