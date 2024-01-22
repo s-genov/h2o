@@ -15,6 +15,7 @@ const VideoPlayer = (props) => {
     return(
         <div className='video-wrap'>
             <ReactPlayer
+                className="react-player"
                 controls={true}
                 ref={playerRef}
                 playing={props.autoPlay}
@@ -25,11 +26,11 @@ const VideoPlayer = (props) => {
                     props.setPlayerAutoPlay(true)
                 }}
                 onPause={(p) => props.setPlayerAutoPlay(false)}
-                url={props.url} 
-                width={"fit-content"}
+                url={props.url}
+                width={"100%"}
                 />
         </div>
     )
 }
 
-export default VideoPlayer
+export default VideoPlayer;
